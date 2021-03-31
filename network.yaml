@@ -1,0 +1,15 @@
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  name: network-partition
+  namespace: default
+spec:
+  action: partition
+  mode: one
+  selector:
+    labelSelectors:
+      app: service_name
+  direction: both
+  duration: "3m"
+  scheduler:
+    cron: "@every 4m"

@@ -1,0 +1,18 @@
+apiVersion: chaos-mesh.org/v1alpha1
+kind: StressChaos
+metadata:
+  name: burn-cpu
+  namespace: default
+spec:
+  mode: all
+  selector:
+    labelSelectors:
+      app: service_name
+  stressors:
+    cpu:
+      workers: 1
+      load: 100
+  duration: '3m'
+  scheduler:
+    cron: '@every 4m'
+
